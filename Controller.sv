@@ -5,7 +5,7 @@ module Controller(
 	output logic [7:0] data
 );
 
-	logic [3:0] count = 0;
+	logic [2:0] count = 0;
 	
 	always_ff @(posedge clk)
 		begin
@@ -13,7 +13,7 @@ module Controller(
 			
 			_latch <= 0;
 			
-			if (count == 8)
+			if (count == 7)
 				begin
 					count <= 0;
 					_latch <= 1;
