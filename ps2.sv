@@ -1,7 +1,7 @@
 module ps2_keyboard(
 	input logic clock, //Clock pin for keyboard
 	input logic data, //Data pin for keyboard
-	output logic [7:0] led
+	output logic [7:0] data_out
 );
 
 	logic [7:0] current_data;
@@ -15,7 +15,7 @@ module ps2_keyboard(
 		flag <= 1'b0;
 		current_data <= 8'h0;
 		previous_data <= 8'h0;
-		led <= 8'h0;
+		data_out <= 8'h0;
 	end
 	
 	always_ff @(negedge clock)
@@ -46,7 +46,7 @@ module ps2_keyboard(
 		always_ff @(posedge flag) //Printing data sent to the led
 			begin
 				if(current_data == 8'h0)
-					led <= previous_data;
+					data_out <= previous_data;
 				
 				else
 					previous_data <= current_data;
