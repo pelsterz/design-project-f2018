@@ -35,15 +35,15 @@ module ps2_keyboard(
 			
 			endcase
 			
-			if(count <= 10) //Check to see if b needs to be reset
-				count <= count + 1; //Increment b
+			if(count <= 10) //Check to see if count needs to be reset
+				count <= count + 1; //Increment count
 				
-			else if(count == 11) //Check to see if b needs to be reset
-				count <= 1; //Reset b
+			else if(count == 11) //Check to see if count needs to be reset
+				count <= 1; //Reset count
 				
 			end
 			
-		always_ff @(posedge flag) //Printing data sent to the led
+		always_ff @(posedge flag) //Printing data 
 			begin
 				if(current_data == 8'h0)
 					data_out <= previous_data;
