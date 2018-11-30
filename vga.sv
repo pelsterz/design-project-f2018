@@ -6,7 +6,9 @@ module vga(
     output wire o_blanking,    
     output wire o_active,       
     output wire o_screenend,         
-    output wire [9:0] o_x,      
+    output wire [9:0] o_x,
+    input logic [0:0] outp,
+    output logic [3:0] blue, 
     output wire [8:0] o_y       
     );
 
@@ -45,7 +47,10 @@ module vga(
 
     always @ (posedge i_clk)
     begin
-       
+        if (outp[0] == 1 & o_active)
+            blue=4'b1111;
+        else
+            blue = 4'0000;
         if (i_pix_stb)  
         begin
             if (h_count == LINE) 
